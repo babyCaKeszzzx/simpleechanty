@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Folk Studio · Instagram Content Plan</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #F5F0E8; }
+    ::-webkit-scrollbar { width: 4px; height: 4px; }
+    ::-webkit-scrollbar-track { background: #E8DFD0; }
+    ::-webkit-scrollbar-thumb { background: #C4A882; border-radius: 4px; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState } = React;
+
+    const brand = {
+      cream: "#F5F0E8",
+      sand: "#E8DFD0",
+      brown: "#8B5E3C",
+      darkBrown: "#3D2B1F",
+      rust: "#A0522D",
+      taupe: "#C4A882",
+      white: "#FDFCFA",
+      accent: "#6B4226",
+    };
+
+    const weeklyPlan = [
+      {
+        day: "Monday", short: "MON", theme: "Motivate & Educate",
+        posts: [
+          {
+            time: "7:00 AM", platform: "Feed", contentType: "education",
+            format: "Carousel", idea: "Pilates Dictionary — Vol. 1",
+            caption: '"Neutral spine, imprinting, powerhouse — speak Pilates fluently. Swipe to learn the top 10 terms every practitioner should know. 🎓"',
+            hashtags: "#PilatesDictionary #PilatesEducation #FolkStudio #LearnPilates #PilatesCommunity",
+            kpi: "Saves", cta: "Save this for your next class!",
+            designNotes: "Clean beige cards, one term per slide, bold serif font for the term, small illustration. Folk Studio logo watermark.",
+          },
+          {
+            time: "6:00 PM", platform: "Stories", contentType: "community",
+            format: "Story sequence (1 min)", idea: "Poll: How long have you been doing Pilates?",
+            caption: "Tap to vote! We love knowing our community 💛",
+            hashtags: "", kpi: "Engagement", cta: "Reply with your Pilates story",
+            designNotes: "3-slide story: (1) Poll slide, (2) 'Share your journey' open question, (3) DM CTA card.",
+          },
+        ],
+      },
+      {
+        day: "Tuesday", short: "TUE", theme: "Behind the Studio",
+        posts: [
+          {
+            time: "8:00 AM", platform: "Reel", contentType: "behind the scenes",
+            format: "Reel/short video (7–15 secs)", idea: "Studio morning prep — before the first client walks in",
+            caption: '"Before the movement, there\'s the ritual. ✨ Every morning at Folk Studio starts like this."',
+            hashtags: "#BehindTheScenes #FolkStudio #PilatesStudio #ManilaFitness #PilatesLife",
+            kpi: "Reach", cta: "Tag someone who needs this kind of morning",
+            designNotes: "Aesthetic b-roll: reformers being set up, light streaming in, instructor prepping. Soft ambient music. Minimal text overlay.",
+          },
+          {
+            time: "5:00 PM", platform: "Stories", contentType: "class promo",
+            format: "Story sequence (1 min)", idea: "This week's class schedule + 'Grab a slot' CTA",
+            caption: "Spots are limited — which class are you eyeing this week?",
+            hashtags: "", kpi: "Leads/bookings", cta: "Swipe up / Link in bio to book",
+            designNotes: "Schedule graphic (3 slides), last slide = booking CTA with urgency copy.",
+          },
+        ],
+      },
+      {
+        day: "Wednesday", short: "WED", theme: "Wellness Wednesday",
+        posts: [
+          {
+            time: "7:30 AM", platform: "Feed", contentType: "education",
+            format: "Single image", idea: "Muscles Targeted by Pilates — infographic",
+            caption: '"It\'s not just core. Pilates works you from the inside out. 💪 Here\'s what actually activates during a session."',
+            hashtags: "#PilatesBody #MuscleMap #PilatesEducation #FolkStudio #StottPilates",
+            kpi: "Saves", cta: "Save & share with a friend who thinks Pilates is 'easy'",
+            designNotes: "Illustrated body diagram, muscle groups labeled. Warm earthy tones, Folk Studio branding.",
+          },
+          {
+            time: "12:00 PM", platform: "Stories", contentType: "testimonial",
+            format: "Story sequence (1 min)", idea: "Client transformation story — 'It took me 3 months to see real results'",
+            caption: "Real results. Real people. 🤍",
+            hashtags: "", kpi: "Shares", cta: "DM us your story",
+            designNotes: "Quote card design, client photo (with permission), before/after feeling not body change. Elegant serif type.",
+          },
+        ],
+      },
+      {
+        day: "Thursday", short: "THU", theme: "Instructor Spotlight",
+        posts: [
+          {
+            time: "8:00 AM", platform: "Feed", contentType: "instructor spotlight",
+            format: "Carousel", idea: "Meet [Instructor Name] — their journey from student to teacher",
+            caption: '"Every instructor at Folk Studio has a story. This is [Name]\'s. 🌿"',
+            hashtags: "#InstructorSpotlight #FolkStudio #PilatesInstructor #CommunityFirst #MeetOurTeam",
+            kpi: "Engagement", cta: "Drop a 🤍 if you've taken their class",
+            designNotes: "Slide 1: portrait photo. Slides 2–4: Q&A cards (Why Pilates? Fav exercise? Advice for beginners?). Consistent card template.",
+          },
+          {
+            time: "7:00 PM", platform: "Stories", contentType: "challenge/series",
+            format: "Story sequence (1 min)", idea: "Day 1 of 5-Day Pilates Challenge — 'Feel it in 5'",
+            caption: "Are you in? Day 1 starts NOW. 🔥",
+            hashtags: "", kpi: "Reach", cta: "Share to your story to join",
+            designNotes: "Branded challenge card, movement demo clip, countdown to next day.",
+          },
+        ],
+      },
+      {
+        day: "Friday", short: "FRI", theme: "FolkTalks & Community",
+        posts: [
+          {
+            time: "8:00 AM", platform: "Reel", contentType: "education",
+            format: "Reel/short video (7–15 secs)", idea: "Pilates vs Strength Training — what nobody tells you",
+            caption: '"We get asked this every week. Here\'s the honest answer. 🎙️ #FolkTalks"',
+            hashtags: "#PilatesVsGym #FolkTalks #PilatesEducation #FolkStudio #FitnessTips",
+            kpi: "Shares", cta: "Save & share to settle the debate",
+            designNotes: "Talking-head format OR text-on-screen reel. Punchy, split-screen comparison. Fast paced but educational.",
+          },
+          {
+            time: "4:00 PM", platform: "Feed", contentType: "class promo",
+            format: "Static + text overlay", idea: "Weekend class availability — 'You deserve a Saturday reset'",
+            caption: '"Your body is asking for it. 🌅 Weekend slots are open — link in bio."',
+            hashtags: "#WeekendPilates #FolkStudio #PilatesManila #SaturdayReset #BookNow",
+            kpi: "Leads/bookings", cta: "Book your weekend class",
+            designNotes: "Lifestyle photo from studio, warm light, clean text overlay. Minimal but aspirational.",
+          },
+        ],
+      },
+      {
+        day: "Saturday", short: "SAT", theme: "Movement & Community",
+        posts: [
+          {
+            time: "7:00 AM", platform: "Reel", contentType: "behind the scenes",
+            format: "Reel/short video (7–15 secs)", idea: "A Saturday morning class — movement, laughter, community",
+            caption: '"This is what we mean by movement for life. 🌿 See you on the reformer."',
+            hashtags: "#SaturdayPilates #FolkStudio #MovementForLife #PilatesCommunity #ManilaWellness",
+            kpi: "Reach", cta: "Tag who you'd bring to a Saturday class",
+            designNotes: "Authentic, candid footage. No heavy editing. Real smiles, real sweat. Warm color grade.",
+          },
+          {
+            time: "6:00 PM", platform: "Stories", contentType: "testimonial",
+            format: "Story sequence (1 min)", idea: "Repost client stories — 'Move with Folk' ambassador feature",
+            caption: "Our community is everything. 🤍",
+            hashtags: "", kpi: "Engagement", cta: "Tag us in your class story for a chance to be featured",
+            designNotes: "Branded story frame for resharing UGC. Consistent but leaves room for client content.",
+          },
+        ],
+      },
+      {
+        day: "Sunday", short: "SUN", theme: "Reflect & Reset",
+        posts: [
+          {
+            time: "8:00 AM", platform: "Feed", contentType: "community",
+            format: "Single image", idea: "Quote card — 'Every day is for women. Sunday reminds us to rest.'",
+            caption: '"A pause. A practice. A moment to reset. 🌙 Rest is part of the work."',
+            hashtags: "#SundayReset #FolkStudio #PilatesMindset #RestAndRecover #WellnessJourney",
+            kpi: "Saves", cta: "Save this reminder",
+            designNotes: "Soft, contemplative image — candle, reformer in golden hour, or abstract. Minimal text. Poetic tone.",
+          },
+        ],
+      },
+    ];
+
+    const contentTypeColors = {
+      "class promo":        { bg: "#A0522D22", border: "#A0522D", text: "#7A3D1E" },
+      "education":          { bg: "#6B422622", border: "#6B4226", text: "#4A2D17" },
+      "testimonial":        { bg: "#C4A88222", border: "#C4A882", text: "#7A6040" },
+      "behind the scenes":  { bg: "#8B5E3C22", border: "#8B5E3C", text: "#5C3D25" },
+      "instructor spotlight":{ bg: "#3D2B1F22", border: "#3D2B1F", text: "#3D2B1F" },
+      "challenge/series":   { bg: "#D4A57422", border: "#D4A574", text: "#8B5E3C" },
+      "community":          { bg: "#E8DFD022", border: "#C4A882", text: "#8B5E3C" },
+    };
+
+    const kpiColors = {
+      "Saves":          "#6B4226",
+      "Reach":          "#A0522D",
+      "Leads/bookings": "#3D2B1F",
+      "Engagement":     "#8B5E3C",
+      "Shares":         "#C4A882",
+    };
+
+    const platformIcons = { Feed: "◼", Reel: "▶", Stories: "◎" };
+
+    function App() {
+      const [selectedDay, setSelectedDay] = useState(0);
+      const [expandedPost, setExpandedPost] = useState(null);
+      const day = weeklyPlan[selectedDay];
+
+      function selectDay(i) {
+        setSelectedDay(i);
+        setExpandedPost(null);
+        window.scrollTo(0, 0);
+      }
+
+      return (
+        React.createElement("div", { style: { minHeight: "100vh", background: brand.cream, fontFamily: "Georgia, serif", color: brand.darkBrown } },
+
+          /* ── Header ── */
+          React.createElement("div", { style: { background: brand.darkBrown, padding: "32px 24px 24px", textAlign: "center", borderBottom: `3px solid ${brand.rust}` } },
+            React.createElement("div", { style: { fontSize: 11, letterSpacing: 4, color: brand.taupe, marginBottom: 8, textTransform: "uppercase" } }, "Folk Studio Pilates"),
+            React.createElement("div", { style: { fontSize: 26, fontWeight: "bold", color: brand.cream, letterSpacing: 1 } }, "Instagram Content Plan"),
+            React.createElement("div", { style: { fontSize: 13, color: brand.sand, marginTop: 6, fontStyle: "italic" } }, "Weekly Strategy Guide · Graphic Designer Edition")
+          ),
+
+          /* ── Legend ── */
+          React.createElement("div", { style: { background: brand.sand, padding: "12px 16px", borderBottom: `1px solid ${brand.taupe}` } },
+            React.createElement("div", { style: { fontSize: 10, letterSpacing: 3, color: brand.accent, marginBottom: 8, textTransform: "uppercase" } }, "Content Types"),
+            React.createElement("div", { style: { display: "flex", flexWrap: "wrap", gap: 6 } },
+              Object.entries(contentTypeColors).map(([type, c]) =>
+                React.createElement("span", {
+                  key: type,
+                  style: { background: c.bg, border: `1px solid ${c.border}`, color: c.text, borderRadius: 20, padding: "2px 10px", fontSize: 11, fontFamily: "sans-serif" }
+                }, type)
+              )
+            )
+          ),
+
+          /* ── Day Tabs ── */
+          React.createElement("div", { style: { display: "flex", overflowX: "auto", background: brand.white, borderBottom: `2px solid ${brand.sand}` } },
+            weeklyPlan.map((d, i) =>
+              React.createElement("button", {
+                key: i,
+                onClick: () => selectDay(i),
+                style: {
+                  flex: "0 0 auto", padding: "14px 16px",
+                  background: selectedDay === i ? brand.darkBrown : "transparent",
+                  color: selectedDay === i ? brand.cream : brand.accent,
+                  border: "none", cursor: "pointer", fontFamily: "sans-serif",
+                  fontSize: 12, fontWeight: selectedDay === i ? "bold" : "normal",
+                  letterSpacing: 1, textTransform: "uppercase",
+                  borderBottom: selectedDay === i ? `3px solid ${brand.rust}` : "3px solid transparent",
+                  transition: "all 0.2s",
+                }
+              }, d.short)
+            )
+          ),
+
+          /* ── Day Header ── */
+          React.createElement("div", { style: { padding: "20px 20px 10px", background: brand.white } },
+            React.createElement("div", { style: { fontSize: 10, letterSpacing: 3, color: brand.taupe, textTransform: "uppercase", fontFamily: "sans-serif" } }, day.day),
+            React.createElement("div", { style: { fontSize: 22, fontWeight: "bold", color: brand.darkBrown, marginTop: 2 } }, day.theme),
+            React.createElement("div", { style: { fontSize: 12, color: brand.rust, fontFamily: "sans-serif", marginTop: 4 } },
+              `${day.posts.length} post${day.posts.length > 1 ? "s" : ""} scheduled`
+            )
+          ),
+
+          /* ── Posts ── */
+          React.createElement("div", { style: { padding: "0 16px 24px" } },
+            day.posts.map((post, pi) => {
+              const ct = contentTypeColors[post.contentType] || {};
+              const isExpanded = expandedPost === pi;
+              return React.createElement("div", {
+                key: pi,
+                style: {
+                  background: brand.white, borderRadius: 14, marginBottom: 14,
+                  border: `1px solid ${brand.sand}`, overflow: "hidden",
+                  boxShadow: isExpanded ? `0 4px 20px ${brand.taupe}44` : "none",
+                  transition: "box-shadow 0.2s",
+                }
+              },
+                /* Card header */
+                React.createElement("div", {
+                  onClick: () => setExpandedPost(isExpanded ? null : pi),
+                  style: { padding: "14px 16px", cursor: "pointer", display: "flex", alignItems: "flex-start", gap: 12 }
+                },
+                  React.createElement("div", {
+                    style: { background: brand.darkBrown, color: brand.cream, borderRadius: 8, padding: "4px 8px", fontSize: 11, fontFamily: "sans-serif", whiteSpace: "nowrap", flexShrink: 0 }
+                  }, post.time),
+                  React.createElement("div", { style: { flex: 1, minWidth: 0 } },
+                    React.createElement("div", { style: { display: "flex", gap: 6, flexWrap: "wrap", marginBottom: 6 } },
+                      React.createElement("span", { style: { background: ct.bg, border: `1px solid ${ct.border}`, color: ct.text, borderRadius: 12, padding: "1px 8px", fontSize: 10, fontFamily: "sans-serif" } }, post.contentType),
+                      React.createElement("span", { style: { background: brand.sand, color: brand.accent, borderRadius: 12, padding: "1px 8px", fontSize: 10, fontFamily: "sans-serif" } }, `${platformIcons[post.platform]} ${post.platform}`),
+                      React.createElement("span", { style: { background: `${kpiColors[post.kpi]}22`, color: kpiColors[post.kpi], borderRadius: 12, padding: "1px 8px", fontSize: 10, fontFamily: "sans-serif", border: `1px solid ${kpiColors[post.kpi]}66` } }, `KPI: ${post.kpi}`)
+                    ),
+                    React.createElement("div", { style: { fontSize: 14, fontWeight: "bold", color: brand.darkBrown, lineHeight: 1.3 } }, post.idea),
+                    React.createElement("div", { style: { fontSize: 11, color: brand.taupe, fontFamily: "sans-serif", marginTop: 3 } }, post.format)
+                  ),
+                  React.createElement("div", { style: { color: brand.taupe, fontSize: 16, flexShrink: 0 } }, isExpanded ? "▲" : "▼")
+                ),
+
+                /* Expanded panel */
+                isExpanded && React.createElement("div", { style: { borderTop: `1px solid ${brand.sand}`, padding: "14px 16px" } },
+                  /* Caption */
+                  React.createElement("div", { style: { marginBottom: 12 } },
+                    React.createElement("div", { style: { fontSize: 10, letterSpacing: 2, color: brand.taupe, textTransform: "uppercase", fontFamily: "sans-serif", marginBottom: 4 } }, "Caption"),
+                    React.createElement("div", { style: { fontSize: 13, color: brand.darkBrown, fontStyle: "italic", lineHeight: 1.5, background: brand.cream, borderRadius: 8, padding: "10px 12px" } }, post.caption)
+                  ),
+                  /* CTA */
+                  React.createElement("div", { style: { marginBottom: 12 } },
+                    React.createElement("div", { style: { fontSize: 10, letterSpacing: 2, color: brand.taupe, textTransform: "uppercase", fontFamily: "sans-serif", marginBottom: 4 } }, "Call to Action"),
+                    React.createElement("div", { style: { fontSize: 13, color: brand.rust, fontFamily: "sans-serif", fontWeight: "bold" } }, `→ ${post.cta}`)
+                  ),
+                  /* Hashtags */
+                  post.hashtags && React.createElement("div", { style: { marginBottom: 12 } },
+                    React.createElement("div", { style: { fontSize: 10, letterSpacing: 2, color: brand.taupe, textTransform: "uppercase", fontFamily: "sans-serif", marginBottom: 4 } }, "Hashtags"),
+                    React.createElement("div", { style: { fontSize: 12, color: brand.accent, fontFamily: "sans-serif", lineHeight: 1.6 } }, post.hashtags)
+                  ),
+                  /* Design Notes */
+                  React.createElement("div", { style: { background: `${brand.rust}11`, border: `1px dashed ${brand.rust}`, borderRadius: 8, padding: "10px 12px" } },
+                    React.createElement("div", { style: { fontSize: 10, letterSpacing: 2, color: brand.rust, textTransform: "uppercase", fontFamily: "sans-serif", marginBottom: 4 } }, "🎨 Design Notes"),
+                    React.createElement("div", { style: { fontSize: 12, color: brand.darkBrown, fontFamily: "sans-serif", lineHeight: 1.5 } }, post.designNotes)
+                  )
+                )
+              );
+            })
+          ),
+
+          /* ── Week at a Glance ── */
+          React.createElement("div", { style: { background: brand.darkBrown, padding: "20px 16px" } },
+            React.createElement("div", { style: { fontSize: 10, letterSpacing: 3, color: brand.taupe, textTransform: "uppercase", fontFamily: "sans-serif", marginBottom: 14 } }, "Full Week at a Glance"),
+            weeklyPlan.map((d, i) =>
+              React.createElement("div", {
+                key: i,
+                onClick: () => selectDay(i),
+                style: {
+                  display: "flex", alignItems: "center", gap: 12, padding: "10px 12px", marginBottom: 6,
+                  background: selectedDay === i ? `${brand.rust}33` : `${brand.cream}11`,
+                  borderRadius: 10, cursor: "pointer",
+                  border: selectedDay === i ? `1px solid ${brand.rust}` : "1px solid transparent",
+                }
+              },
+                React.createElement("div", { style: { fontSize: 11, fontFamily: "sans-serif", color: brand.taupe, width: 30, flexShrink: 0 } }, d.short),
+                React.createElement("div", { style: { flex: 1 } },
+                  React.createElement("div", { style: { fontSize: 13, color: brand.cream, fontWeight: "bold" } }, d.theme),
+                  React.createElement("div", { style: { display: "flex", gap: 6, marginTop: 4, flexWrap: "wrap" } },
+                    d.posts.map((p, pi) => {
+                      const ct = contentTypeColors[p.contentType] || {};
+                      return React.createElement("span", {
+                        key: pi,
+                        style: { background: ct.bg, border: `1px solid ${ct.border}`, color: ct.text, borderRadius: 10, padding: "1px 7px", fontSize: 10, fontFamily: "sans-serif" }
+                      }, p.contentType);
+                    })
+                  )
+                ),
+                React.createElement("div", { style: { fontSize: 12, color: brand.taupe, fontFamily: "sans-serif" } }, `${d.posts.length}p`)
+              )
+            )
+          ),
+
+          /* ── KPI Key ── */
+          React.createElement("div", { style: { background: brand.sand, padding: "16px 16px 32px" } },
+            React.createElement("div", { style: { fontSize: 10, letterSpacing: 3, color: brand.accent, textTransform: "uppercase", fontFamily: "sans-serif", marginBottom: 10 } }, "KPI Focus Key"),
+            React.createElement("div", { style: { display: "flex", flexWrap: "wrap", gap: 8 } },
+              Object.entries(kpiColors).map(([kpi, color]) =>
+                React.createElement("div", { key: kpi, style: { display: "flex", alignItems: "center", gap: 6 } },
+                  React.createElement("div", { style: { width: 10, height: 10, borderRadius: "50%", background: color } }),
+                  React.createElement("span", { style: { fontSize: 12, fontFamily: "sans-serif", color: brand.darkBrown } }, kpi)
+                )
+              )
+            ),
+            React.createElement("div", { style: { marginTop: 16, fontSize: 11, color: brand.accent, fontFamily: "sans-serif", lineHeight: 1.6 } },
+              "💡 ", React.createElement("strong", null, "Algorithm Tips:"), " Post Reels consistently for Reach. Carousel posts maximize Saves & time-on-post. Stories keep daily engagement. Always include a strong CTA. Use 5–10 targeted hashtags max."
+            )
+          )
+        )
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById("root")).render(React.createElement(App));
+  </script>
+</body>
+</html>
