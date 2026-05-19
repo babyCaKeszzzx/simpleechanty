@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FolkStudio — Instagram Content Strategy 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@200;300;400;500;600&family=Pinyon+Script&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --clay:#A63D22;--clay-dk:#8B3A1F;--clay-lt:#C96040;
+  --moss:#4A6741;--olive:#7A7455;--olive-dk:#5C5840;
+  --linen:#F2EAE0;--canvas:#E0C9B2;--sand:#C8B090;
+  --gold:#C4903A;--ebony:#1E1208;--mid:#8A7060;--bg:#F5EFE7;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ebony);font-family:'Jost',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased}
+::-webkit-scrollbar{width:4px;height:4px}
+::-webkit-scrollbar-track{background:#E8DFD0}
+::-webkit-scrollbar-thumb{background:var(--sand);border-radius:4px}
+
+/* ── COVER ── */
+.cover{min-height:100vh;display:grid;grid-template-columns:58% 42%;position:relative;overflow:hidden}
+.cover-l{background:var(--ebony);display:flex;flex-direction:column;justify-content:space-between;padding:64px 56px;position:relative;overflow:hidden}
+.cover-l::before{content:'';position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(166,61,34,.2) 0%,transparent 65%);top:-150px;left:-150px;pointer-events:none}
+.cover-l::after{content:'';position:absolute;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(74,103,65,.15) 0%,transparent 65%);bottom:-100px;right:-60px;pointer-events:none}
+.c-brand{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:400;color:var(--linen);opacity:0;animation:fu .8s .1s ease forwards}
+.c-brand span{display:block;font-size:9px;font-family:'Jost',sans-serif;letter-spacing:.24em;text-transform:uppercase;color:var(--sand);margin-top:4px}
+.c-main{flex:1;display:flex;flex-direction:column;justify-content:center;padding:56px 0;opacity:0;animation:fu .9s .3s ease forwards}
+.c-eye{font-size:9px;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);font-weight:600;display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.c-eye::before{content:'';width:32px;height:1px;background:var(--gold)}
+.c-title{font-family:'Cormorant Garamond',serif;font-size:clamp(44px,5.5vw,76px);font-weight:300;line-height:.95;color:var(--linen)}
+.c-title em{font-style:italic;color:var(--clay-lt);display:block}
+.c-title .sc{font-family:'Pinyon Script',cursive;font-size:1.1em;color:var(--canvas);display:block;line-height:1.1;margin-top:6px}
+.c-meta{opacity:0;animation:fu .9s .5s ease forwards;display:flex;gap:36px;flex-wrap:wrap}
+.c-meta-i{display:flex;flex-direction:column;gap:4px}
+.c-meta-l{font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:var(--sand);opacity:.65}
+.c-meta-v{font-size:13px;color:var(--canvas);font-weight:300}
+.cover-r{background:var(--clay);display:flex;flex-direction:column;justify-content:center;padding:56px 44px;gap:12px;position:relative;overflow:hidden}
+.cover-r::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(-45deg,transparent,transparent 52px,rgba(255,255,255,.03) 52px,rgba(255,255,255,.03) 53px);pointer-events:none}
+.cover-kpi-title{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:rgba(242,234,224,.5);font-weight:600;margin-bottom:8px;opacity:0;animation:fu .8s .6s ease forwards}
+.kpi-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;opacity:0;animation:fu .9s .7s ease forwards}
+.kpi-card{background:rgba(0,0,0,.2);border-radius:8px;padding:16px 14px}
+.kpi-num{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:300;color:var(--linen);line-height:1}
+.kpi-label{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:rgba(242,234,224,.55);margin-top:4px}
+.cover-stat{background:rgba(74,103,65,.4);border-radius:8px;padding:14px;opacity:0;animation:fu .9s .8s ease forwards}
+.stat-val{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;color:var(--linen);line-height:1.3}
+.stat-desc{font-size:10px;color:rgba(242,234,224,.6);margin-top:3px;line-height:1.5}
+
+/* ── STATIC SECTIONS ── */
+.main{max-width:1160px;margin:0 auto;padding:80px 52px}
+.sec{margin-bottom:80px}
+.eye{font-size:9px;letter-spacing:.26em;text-transform:uppercase;color:var(--clay);font-weight:600;display:flex;align-items:center;gap:12px;margin-bottom:8px}
+.eye::before{content:'';width:32px;height:1px;background:var(--clay);flex-shrink:0}
+.stitle{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,3vw,44px);font-weight:400;color:var(--ebony);line-height:1.05;margin-bottom:8px}
+.stitle em{font-style:italic;color:var(--clay)}
+.sdesc{font-size:13px;color:var(--mid);line-height:1.8;max-width:600px;font-weight:300;margin-bottom:36px}
+.hr{border:none;border-top:.5px solid var(--canvas);margin:72px 0}
+
+/* ── CONTENT TYPE CARDS ── */
+.ct-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:48px}
+.ct-card{border-radius:12px;overflow:hidden;border:.5px solid rgba(0,0,0,.06);transition:transform .2s ease,box-shadow .2s ease}
+.ct-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(30,18,8,.1)}
+.ct-head{padding:20px 18px 16px}
+.ct-icon{font-family:'Cormorant Garamond',serif;font-size:44px;font-weight:300;opacity:.25;line-height:1;margin-bottom:8px}
+.ct-name{font-size:10px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;margin-bottom:4px}
+.ct-goal{font-size:11px;font-weight:300;opacity:.75;line-height:1.4}
+.ct-foot{padding:12px 18px;background:white;display:flex;gap:6px;flex-wrap:wrap}
+.ct-tag{font-size:8px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;padding:3px 8px;border-radius:10px}
+
+/* ── ALGO CARDS ── */
+.algo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:48px}
+.algo-card{background:var(--ebony);border-radius:12px;padding:28px 24px;position:relative;overflow:hidden}
+.algo-card::before{content:'';position:absolute;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(166,61,34,.15) 0%,transparent 65%);top:-60px;right:-60px;pointer-events:none}
+.algo-num{font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:300;color:rgba(196,144,58,.2);line-height:1;margin-bottom:8px}
+.algo-title{font-size:10px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--gold);margin-bottom:8px}
+.algo-desc{font-size:12px;color:#C8B090;line-height:1.7;font-weight:300}
+
+/* ── MASTER TABLE ── */
+.sched-wrap{overflow-x:auto;margin-bottom:48px}
+.sched-table{width:100%;border-collapse:collapse;font-size:11.5px;min-width:900px}
+.sched-table th{font-size:8px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--mid);padding:10px 14px;text-align:left;border-bottom:1px solid var(--canvas);background:#EDE8DF;white-space:nowrap}
+.sched-table td{padding:12px 14px;border-bottom:.5px solid #EAE4DC;vertical-align:top;line-height:1.6;color:var(--ebony);font-weight:300}
+.sched-table tr:hover td{background:#FAF5EE}
+.sched-table tr:last-child td{border-bottom:none}
+.day-hdr td{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:400;color:var(--linen);padding:10px 14px;letter-spacing:.04em}
+.tag{display:inline-block;padding:3px 9px;border-radius:20px;font-size:8px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;white-space:nowrap;margin:1px}
+.t-promo{background:#FBE8DF;color:#A63D22}
+.t-edu{background:#EDE9DC;color:#5C5840}
+.t-test{background:#DDE9DA;color:#4A6741}
+.t-bts{background:#2A1808;color:#C4903A}
+.t-inst{background:#F0EBE4;color:#8B3A1F}
+.t-chal{background:#1E1208;color:#E0C9B2}
+.t-comm{background:#4A6741;color:#F2EAE0}
+.fmt-tag{display:inline-block;padding:2px 7px;border-radius:4px;font-size:8px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;white-space:nowrap}
+.f-reel{background:#1E1208;color:#C4903A}
+.f-car{background:#EDE9DC;color:#5C5840}
+.f-story{background:#FBE8DF;color:#A63D22}
+.f-single{background:#F5EFE7;color:#7A7455;border:.5px solid #C8B090}
+.f-static{background:#E8E4D8;color:#5C5840}
+.kpi-tag{font-size:10px;color:var(--moss);font-weight:500}
+.cap{font-style:italic;color:var(--mid);font-size:10.5px}
+.rest-row td{opacity:.4;font-style:italic}
+
+/* ── CONTENT IDEAS ── */
+.ideas-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:48px}
+.idea-card{border-radius:10px;overflow:hidden;border:.5px solid rgba(0,0,0,.06)}
+.idea-head{padding:14px 16px 12px}
+.idea-title{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;line-height:1.15;margin-bottom:6px}
+.idea-series{font-size:8px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;margin-bottom:8px}
+.idea-tags{display:flex;gap:5px;flex-wrap:wrap}
+.idea-body{padding:12px 16px;background:white}
+.idea-desc{font-size:11px;color:var(--mid);line-height:1.65;font-weight:300}
+.idea-hook{font-size:11px;font-style:italic;color:var(--clay);margin-top:8px;line-height:1.5}
+
+/* ── SEO ── */
+.seo-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.seo-card{border-radius:10px;overflow:hidden;border:.5px solid rgba(0,0,0,.06)}
+.seo-head{padding:12px 16px;font-size:9px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;display:flex;align-items:center;gap:8px}
+.seo-body{padding:16px;background:white;display:flex;flex-direction:column;gap:10px}
+.seo-item{display:flex;gap:10px;font-size:12px;color:#4A3828;line-height:1.65;font-weight:300}
+.seo-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0;margin-top:7px}
+
+/* ── INTERACTIVE PLANNER WRAPPER ── */
+.planner-section{background:var(--ebony);border-radius:16px;overflow:hidden;margin-bottom:0}
+.planner-header{background:var(--clay-dk);padding:28px 32px 20px;border-bottom:2px solid var(--clay)}
+.planner-header-top{font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:var(--sand);margin-bottom:6px}
+.planner-header-title{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:400;color:var(--linen)}
+.planner-header-sub{font-size:12px;color:var(--canvas);font-style:italic;margin-top:4px}
+
+/* React planner root */
+#planner-root{font-family:'Jost',sans-serif}
+
+/* ── FOOTER ── */
+.doc-footer{border-top:1px solid var(--canvas);padding-top:24px;display:flex;justify-content:space-between;align-items:center;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--mid);margin-top:64px;flex-wrap:wrap;gap:12px}
+
+@keyframes fu{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+
+@media(max-width:900px){
+  .cover{grid-template-columns:1fr}
+  .cover-r{min-height:auto;padding:40px 32px}
+  .ct-grid{grid-template-columns:1fr 1fr}
+  .algo-grid{grid-template-columns:1fr}
+  .ideas-grid{grid-template-columns:1fr 1fr}
+  .seo-grid{grid-template-columns:1fr}
+  .main{padding:48px 24px}
+}
+@media(max-width:600px){
+  .ct-grid{grid-template-columns:1fr}
+  .ideas-grid{grid-template-columns:1fr}
+  .c-meta{gap:20px}
+}
+</style>
+</head>
+<body>
+
+<!-- ══ COVER ══ -->
+<section class="cover">
+  <div class="cover-l">
+    <div class="c-brand">FolkStudio. <span>White Plains · Quezon City · Philippines</span></div>
+    <div class="c-main">
+      <p class="c-eye">Instagram Content Strategy</p>
+      <h1 class="c-title">Content<br><em>Plan &</em><span class="sc">Direction.</span></h1>
+    </div>
+    <div class="c-meta">
+      <div class="c-meta-i"><span class="c-meta-l">Prepared by</span><span class="c-meta-v">SimpleeChanty</span></div>
+      <div class="c-meta-i"><span class="c-meta-l">Account</span><span class="c-meta-v">@folkstudiopilates</span></div>
+      <div class="c-meta-i"><span class="c-meta-l">Year</span><span class="c-meta-v">2026</span></div>
+    </div>
+  </div>
+  <div class="cover-r">
+    <p class="cover-kpi-title">Primary KPIs this plan targets</p>
+    <div class="kpi-grid">
+      <div class="kpi-card"><div class="kpi-num">7</div><div class="kpi-label">Content Types</div></div>
+      <div class="kpi-card"><div class="kpi-num">7</div><div class="kpi-label">Posts / Week</div></div>
+      <div class="kpi-card"><div class="kpi-num">5</div><div class="kpi-label">Formats Used</div></div>
+      <div class="kpi-card"><div class="kpi-num">3</div><div class="kpi-label">Platforms</div></div>
+    </div>
+    <div class="cover-stat">
+      <div class="stat-val">Reach · Saves · Leads · Engagement · Shares</div>
+      <div class="stat-desc">All five primary KPIs addressed across the weekly schedule</div>
+    </div>
+  </div>
+</section>
+
+<div class="main">
+
+<!-- ══ 01 CONTENT TYPES ══ -->
+<div class="sec">
+  <p class="eye">01 — Content Type System</p>
+  <h2 class="stitle">Seven content types, <em>one clear role each</em></h2>
+  <p class="sdesc">Every post belongs to a content type that serves a specific purpose — from building trust to driving bookings. Knowing the type before designing prevents random, disconnected posting.</p>
+  <div class="ct-grid">
+    <div class="ct-card"><div class="ct-head" style="background:#A63D22;color:#F2EAE0"><div class="ct-icon">✦</div><div class="ct-name">Class Promo</div><div class="ct-goal">Drive bookings & trial signups</div></div><div class="ct-foot"><span class="ct-tag" style="background:#FBE8DF;color:#A63D22">Leads</span><span class="ct-tag" style="background:#FBE8DF;color:#A63D22">Reach</span><span class="ct-tag" style="background:#FBE8DF;color:#A63D22">Shares</span></div></div>
+    <div class="ct-card"><div class="ct-head" style="background:#F2EAE0;color:#8B3A1F"><div class="ct-icon" style="color:#8B3A1F">◯</div><div class="ct-name" style="color:#8B3A1F">Education</div><div class="ct-goal" style="color:#5C3820">Builds authority, gets saved & shared</div></div><div class="ct-foot"><span class="ct-tag" style="background:#EDE9DC;color:#5C5840">Saves</span><span class="ct-tag" style="background:#EDE9DC;color:#5C5840">Shares</span><span class="ct-tag" style="background:#EDE9DC;color:#5C5840">Reach</span></div></div>
+    <div class="ct-card"><div class="ct-head" style="background:#4A6741;color:#F2EAE0"><div class="ct-icon">❝</div><div class="ct-name">Testimonial</div><div class="ct-goal">Social proof — converts lurkers to leads</div></div><div class="ct-foot"><span class="ct-tag" style="background:#DDE9DA;color:#4A6741">Leads</span><span class="ct-tag" style="background:#DDE9DA;color:#4A6741">Engagement</span></div></div>
+    <div class="ct-card"><div class="ct-head" style="background:#2A1808;color:#E0C9B2"><div class="ct-icon" style="color:rgba(196,144,58,.4)">◎</div><div class="ct-name" style="color:#C4903A">Behind the Scenes</div><div class="ct-goal">Humanizes the brand, builds connection</div></div><div class="ct-foot"><span class="ct-tag" style="background:#2A1808;color:#C4903A">Engagement</span><span class="ct-tag" style="background:#2A1808;color:#C4903A">Follows</span></div></div>
+    <div class="ct-card"><div class="ct-head" style="background:#8B3A1F;color:#F2EAE0"><div class="ct-icon">◈</div><div class="ct-name">Instructor Spotlight</div><div class="ct-goal">Builds trust & personal connection</div></div><div class="ct-foot"><span class="ct-tag" style="background:#F0EBE4;color:#8B3A1F">Follows</span><span class="ct-tag" style="background:#F0EBE4;color:#8B3A1F">Trust</span></div></div>
+    <div class="ct-card"><div class="ct-head" style="background:#1E1208;color:#E0C9B2"><div class="ct-icon" style="color:rgba(196,144,58,.3)">⟳</div><div class="ct-name" style="color:#C4903A">Challenge / Series</div><div class="ct-goal">Recurring format — builds account loyalty</div></div><div class="ct-foot"><span class="ct-tag" style="background:#1E1208;color:#E0C9B2">Saves</span><span class="ct-tag" style="background:#1E1208;color:#E0C9B2">Shares</span></div></div>
+    <div class="ct-card"><div class="ct-head" style="background:#7A7455;color:#F2EAE0"><div class="ct-icon">✿</div><div class="ct-name">Community</div><div class="ct-goal">Celebrates members, creates belonging</div></div><div class="ct-foot"><span class="ct-tag" style="background:#EAE6D8;color:#5C5840">Engagement</span><span class="ct-tag" style="background:#EAE6D8;color:#5C5840">Retention</span></div></div>
+  </div>
+</div>
+
+<hr class="hr">
+
+<!-- ══ 02 ALGORITHM ══ -->
+<div class="sec">
+  <p class="eye">02 — Instagram Algorithm & SEO</p>
+  <h2 class="stitle">What the algorithm <em>actually rewards</em></h2>
+  <p class="sdesc">Six signals that directly impact reach, discoverability, and follower growth. Every post in this plan is designed around at least one of them.</p>
+  <div class="algo-grid">
+    <div class="algo-card"><div class="algo-num">01</div><div class="algo-title">Saves over Likes</div><div class="algo-desc">Instagram weights saves and shares more than likes. Educational carousels (Pilates Dictionary, Muscles Targeted, Reformer Anatomy) are built to be saved — this signals high-value content and extends post lifespan.</div></div>
+    <div class="algo-card"><div class="algo-num">02</div><div class="algo-title">Keyword SEO in Captions</div><div class="algo-desc">Instagram indexes captions like a search engine. Every post should include: "pilates Quezon City," "pilates White Plains QC," "reformer pilates Manila." Embed these naturally in caption text — don't rely on hashtags alone.</div></div>
+    <div class="algo-card"><div class="algo-num">03</div><div class="algo-title">Reels for Discovery</div><div class="algo-desc">Reels are shown to non-followers — they are FolkStudio's primary growth engine. Hook within 1.5 seconds, use trending audio weekly, and keep captions keyword-rich. Strong reels compound reach over time.</div></div>
+    <div class="algo-card"><div class="algo-num">04</div><div class="algo-title">Consistent Cadence</div><div class="algo-desc">The algorithm rewards consistency over sporadic brilliance. 5–6 posts per week on a fixed schedule trains both the algorithm and the audience. Never go more than 2 days without a Story — Stories maintain daily presence.</div></div>
+    <div class="algo-card"><div class="algo-num">05</div><div class="algo-title">First-Hour Engagement</div><div class="algo-desc">The first 60 minutes after posting determines reach ceiling. Post at 7–9AM or 7–9PM for Manila-based audiences. Include a comment-prompting CTA in every post: "Which reformer move would you try first?"</div></div>
+    <div class="algo-card"><div class="algo-num">06</div><div class="algo-title">Series = Return Visits</div><div class="algo-desc">Recurring series like "Folk Talks," "Pilates Dictionary," and "Move with Folk" train followers to return regularly. Each return signals active follower interest — improving distribution of all future posts.</div></div>
+  </div>
+</div>
+
+<hr class="hr">
+
+<!-- ══ 03 MASTER CONTENT TABLE ══ -->
+<div class="sec">
+  <p class="eye">03 — Weekly Content Guide</p>
+  <h2 class="stitle">What to post, <em>why, and how</em></h2>
+  <p class="sdesc">The master content guide — every content type mapped to format, platform, KPI, content idea, and caption hook. This is the posting reference for FolkStudio's Instagram.</p>
+  <div class="sched-wrap">
+  <table class="sched-table">
+    <thead><tr><th>Content Type</th><th>Format</th><th>Platform</th><th>Primary KPI</th><th>Content Idea</th><th>Caption Hook</th><th>SEO Keywords</th></tr></thead>
+    <tbody>
+      <tr class="day-hdr"><td colspan="7" style="background:#A63D22">Class Promo</td></tr>
+      <tr><td><span class="tag t-promo">Class Promo</span></td><td><span class="fmt-tag f-reel">Reel 7–15s</span></td><td>IG Reel</td><td><span class="kpi-tag">Leads · Reach</span></td><td>Open Mat Sundays — ₱499, 10 slots, every Sunday</td><td class="cap">"Drop in. Move freely. No experience needed. 🌿"</td><td>reformer pilates Manila, pilates QC</td></tr>
+      <tr><td><span class="tag t-promo">Class Promo</span></td><td><span class="fmt-tag f-story">Story Sequence</span></td><td>IG Stories</td><td><span class="kpi-tag">Leads · Bookings</span></td><td>Weekly class schedule + booking CTA in 3 slides</td><td class="cap">"Which class are you eyeing this week? Swipe →"</td><td>pilates class White Plains QC, pilates studio Philippines</td></tr>
+      <tr><td><span class="tag t-promo">Class Promo</span></td><td><span class="fmt-tag f-static">Static + Text</span></td><td>IG Feed</td><td><span class="kpi-tag">Reach · Saves</span></td><td>Weekend class availability — "You deserve a Saturday reset"</td><td class="cap">"Your body is asking for it. 🌅 Weekend slots are open."</td><td>weekend pilates Quezon City, Saturday pilates class</td></tr>
+
+      <tr class="day-hdr"><td colspan="7" style="background:#8B3A1F">Education</td></tr>
+      <tr><td><span class="tag t-edu">Education</span></td><td><span class="fmt-tag f-car">Carousel</span></td><td>IG Feed</td><td><span class="kpi-tag">Saves · Shares</span></td><td>Pilates Dictionary Vol. 1 — "Neutral spine, imprinting, powerhouse" defined</td><td class="cap">"Speak Pilates fluently. Save this before your next class. 📖"</td><td>pilates terms, reformer pilates beginner Manila</td></tr>
+      <tr><td><span class="tag t-edu">Education</span></td><td><span class="fmt-tag f-single">Single Image</span></td><td>IG Feed</td><td><span class="kpi-tag">Saves · Reach</span></td><td>Muscles Targeted by Pilates — illustrated body diagram</td><td class="cap">"It's not just core. This is what actually activates. 💪"</td><td>pilates muscles, pilates body benefits Philippines</td></tr>
+      <tr><td><span class="tag t-edu">Education</span></td><td><span class="fmt-tag f-car">Carousel</span></td><td>IG Feed</td><td><span class="kpi-tag">Saves · Shares</span></td><td>Pilates vs Strength Training — honest side-by-side</td><td class="cap">"Hindi kailangan pumili. But if you're curious — swipe. 👉"</td><td>pilates vs strength training, pilates benefits Philippines</td></tr>
+      <tr><td><span class="tag t-edu">Education</span></td><td><span class="fmt-tag f-reel">Reel 7–15s</span></td><td>IG Reel</td><td><span class="kpi-tag">Reach · Shares</span></td><td>Pilates vs Strength Training — punchy talking-head reel #FolkTalks</td><td class="cap">"We get asked this every week. Here's the honest answer. 🎙️ #FolkTalks"</td><td>FolkTalks, pilates education QC</td></tr>
+      <tr><td><span class="tag t-edu">Education</span></td><td><span class="fmt-tag f-car">Carousel</span></td><td>IG Feed</td><td><span class="kpi-tag">Saves · Shares</span></td><td>Yoga vs Pilates — what they share & what's different</td><td class="cap">"If you love yoga, here's what pilates adds."</td><td>yoga vs pilates, pilates Manila</td></tr>
+      <tr><td><span class="tag t-edu">Education</span></td><td><span class="fmt-tag f-car">Carousel</span></td><td>IG Feed</td><td><span class="kpi-tag">Saves · Reach</span></td><td>Reformer Anatomy — label every part and what it does</td><td class="cap">"You've seen it. Now know it. The reformer, explained."</td><td>reformer pilates machine, reformer pilates BGC</td></tr>
+      <tr><td><span class="tag t-edu">Education</span></td><td><span class="fmt-tag f-car">Carousel</span></td><td>IG Feed</td><td><span class="kpi-tag">Saves · Shares</span></td><td>Types of Pilates — mat, reformer, clinical, aerial explained</td><td class="cap">"There's more than one kind. Here's how to know which is for you."</td><td>types of pilates, pilates classes Manila</td></tr>
+      <tr><td><span class="tag t-edu">Education</span></td><td><span class="fmt-tag f-single">Static + Text</span></td><td>IG Feed</td><td><span class="kpi-tag">Saves</span></td><td>Pilates Essentials — packing checklist for your first class</td><td class="cap">"First class checklist. Save so you don't forget. ✓"</td><td>first pilates class, pilates beginner tips QC</td></tr>
+      <tr><td><span class="tag t-edu">Education</span></td><td><span class="fmt-tag f-reel">Reel 30s</span></td><td>IG Reel</td><td><span class="kpi-tag">Reach · Comments</span></td><td>What is the WORST pilates can do to your body — myth-busting</td><td class="cap">"Someone asked this. We answered honestly. No sugarcoating."</td><td>pilates side effects, is pilates safe Philippines</td></tr>
+
+      <tr class="day-hdr"><td colspan="7" style="background:#4A6741">Testimonial</td></tr>
+      <tr><td><span class="tag t-test">Testimonial</span></td><td><span class="fmt-tag f-story">Story Sequence</span></td><td>IG Stories</td><td><span class="kpi-tag">Shares · Trust</span></td><td>"It took 3 months to see real results" — member transformation story</td><td class="cap">"Real results. Real people. 🤍 DM us your story."</td><td>pilates results, pilates transformation Philippines</td></tr>
+      <tr><td><span class="tag t-test">Testimonial</span></td><td><span class="fmt-tag f-car">Carousel</span></td><td>IG Feed</td><td><span class="kpi-tag">Leads · Engagement</span></td><td>"How my body changed from strength training to pilates" — member journey</td><td class="cap">"She traded the barbell for the reformer. Here's what changed."</td><td>pilates body transformation, folk studio testimonial</td></tr>
+      <tr><td><span class="tag t-test">Testimonial</span></td><td><span class="fmt-tag f-story">Story Sequence</span></td><td>IG Stories</td><td><span class="kpi-tag">Engagement</span></td><td>Repost client stories — Move with Folk ambassador feature</td><td class="cap">"Our community is everything. 🤍 Tag us to be featured."</td><td>pilates community QC, folk studio members</td></tr>
+
+      <tr class="day-hdr"><td colspan="7" style="background:#2A1808;color:#C4903A">Behind the Scenes</td></tr>
+      <tr><td><span class="tag t-bts">BTS</span></td><td><span class="fmt-tag f-reel">Reel 7–15s</span></td><td>IG Reel</td><td><span class="kpi-tag">Reach · Follows</span></td><td>Studio morning prep — before the first client walks in</td><td class="cap">"Before the movement, there's the ritual. ✨ Every morning at Folk starts like this."</td><td>pilates studio White Plains QC, folk studio pilates</td></tr>
+      <tr><td><span class="tag t-bts">BTS</span></td><td><span class="fmt-tag f-reel">Reel 7–15s</span></td><td>IG Reel</td><td><span class="kpi-tag">Engagement · Follows</span></td><td>Saturday morning class — movement, laughter, community candid footage</td><td class="cap">"This is what we mean by movement for life. 🌿"</td><td>pilates community Manila, folk studio life</td></tr>
+
+      <tr class="day-hdr"><td colspan="7" style="background:#8B3A1F">Instructor Spotlight</td></tr>
+      <tr><td><span class="tag t-inst">Instructor</span></td><td><span class="fmt-tag f-car">Carousel</span></td><td>IG Feed</td><td><span class="kpi-tag">Trust · Engagement</span></td><td>Meet [Instructor] — journey from student to teacher. Q&A: Why Pilates? Fav move? Advice?</td><td class="cap">"Every instructor at Folk has a story. This is [Name]'s. 🌿"</td><td>pilates instructor Quezon City, folk studio instructors</td></tr>
+      <tr><td><span class="tag t-inst">Instructor</span></td><td><span class="fmt-tag f-story">Story Sequence</span></td><td>IG Stories</td><td><span class="kpi-tag">Follows · Trust</span></td><td>Folk Talks — instructor's top tip for beginners, 3-slide story</td><td class="cap">"Drop a 🤍 if you've taken their class!"</td><td>certified pilates instructor Manila, folk studio team</td></tr>
+
+      <tr class="day-hdr"><td colspan="7" style="background:#1E1208;color:#C4903A">Challenge / Series</td></tr>
+      <tr><td><span class="tag t-chal">Series</span></td><td><span class="fmt-tag f-car">Carousel</span></td><td>IG Feed</td><td><span class="kpi-tag">Saves · Follows</span></td><td>Pilates Dictionary — weekly recurring series, Vol. 1 → ongoing</td><td class="cap">"Every week, one new pilates word. Save for your next class. 📖 #PilatesDictionary"</td><td>pilates terms, reformer pilates beginner QC</td></tr>
+      <tr><td><span class="tag t-chal">Challenge</span></td><td><span class="fmt-tag f-story">Story Sequence</span></td><td>IG Stories</td><td><span class="kpi-tag">Reach · Shares</span></td><td>Feel It in 5 — Day 1 of 5-day pilates challenge, one move per day</td><td class="cap">"Are you in? Day 1 starts NOW. 🔥 Share to your story to join."</td><td>pilates challenge Philippines, pilates at home</td></tr>
+      <tr><td><span class="tag t-chal">Series</span></td><td><span class="fmt-tag f-reel">Reel 1 min</span></td><td>IG Reel</td><td><span class="kpi-tag">Shares · UGC</span></td><td>Move with Folk Ambassadorship — 7-day challenge, tag @folkstudiopilates daily</td><td class="cap">"7 days. 7 moves. Tag us when you try it. 🌿 #MoveWithFolk"</td><td>pilates challenge QC, move with folk</td></tr>
+
+      <tr class="day-hdr"><td colspan="7" style="background:#4A6741">Community</td></tr>
+      <tr><td><span class="tag t-comm">Community</span></td><td><span class="fmt-tag f-story">Story Sequence</span></td><td>IG Stories</td><td><span class="kpi-tag">Engagement</span></td><td>Poll: "How long have you been doing Pilates?" + open Q: Share your journey</td><td class="cap">"Tap to vote! We love knowing our community 💛"</td><td>pilates community Philippines, folk studio QC</td></tr>
+      <tr><td><span class="tag t-comm">Community</span></td><td><span class="fmt-tag f-single">Single Image</span></td><td>IG Feed</td><td><span class="kpi-tag">Saves · Retention</span></td><td>Sunday quote card — "A pause. A practice. A moment to reset." Golden hour studio image</td><td class="cap">"Rest is part of the work. 🌙 Save this reminder."</td><td>pilates mindset, wellness Quezon City</td></tr>
+      <tr><td><span class="tag t-comm">Community</span></td><td><span class="fmt-tag f-reel">Vlog 1 min</span></td><td>IG Reel</td><td><span class="kpi-tag">Follows · Shares</span></td><td>Open Mat Sundays vlog — candid, warm, real Sunday energy at Folk</td><td class="cap">"We saved you a mat next Sunday. 🌿"</td><td>open mat pilates, pilates community White Plains QC</td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<hr class="hr">
+
+<!-- ══ 04 CONTENT IDEAS ══ -->
+<div class="sec">
+  <p class="eye">04 — Content Ideas Bank</p>
+  <h2 class="stitle">Ready-to-use <em>content ideas</em></h2>
+  <p class="sdesc">12 content ideas prioritized for saves, shares, and SEO discoverability — ready to brief a designer or shoot.</p>
+  <div class="ideas-grid">
+    <div class="idea-card"><div class="idea-head" style="background:#F2EAE0"><div class="idea-series" style="color:#A63D22">Education · Weekly Series</div><div class="idea-title" style="color:#8B3A1F">Pilates Dictionary</div><div class="idea-tags"><span class="tag t-edu">Education</span><span class="fmt-tag f-car">Carousel</span></div></div><div class="idea-body"><div class="idea-desc">One pilates term per week — define it, show it in action, explain why it matters. Designed to be saved and referenced before class. Builds authority over time.</div><div class="idea-hook">"Save this before your next reformer class. 📖 #PilatesDictionary"</div></div></div>
+    <div class="idea-card"><div class="idea-head" style="background:#F2EAE0"><div class="idea-series" style="color:#A63D22">Education</div><div class="idea-title" style="color:#8B3A1F">Muscles Targeted by Pilates</div><div class="idea-tags"><span class="tag t-edu">Education</span><span class="fmt-tag f-single">Single Image</span></div></div><div class="idea-body"><div class="idea-desc">Visual body diagram showing which muscles each pilates move targets. One move per slide. Highly saveable — people return to this before their sessions.</div><div class="idea-hook">"This is what's happening when you feel that burn. 🔥 Save this."</div></div></div>
+    <div class="idea-card"><div class="idea-head" style="background:#F2EAE0"><div class="idea-series" style="color:#A63D22">Education</div><div class="idea-title" style="color:#8B3A1F">Reformer Anatomy</div><div class="idea-tags"><span class="tag t-edu">Education</span><span class="fmt-tag f-car">Carousel</span></div></div><div class="idea-body"><div class="idea-desc">Diagram of the reformer — label every part with what it does. Perfect for intimidated beginners who've never seen one up close.</div><div class="idea-hook">"You've seen it. Now know it. The reformer, explained. 🤍"</div></div></div>
+    <div class="idea-card"><div class="idea-head" style="background:#1E1208"><div class="idea-series" style="color:#C4903A">Myth-busting</div><div class="idea-title" style="color:#F2EAE0">What is the WORST pilates can do to your body</div><div class="idea-tags"><span class="tag t-edu">Education</span><span class="fmt-tag f-reel">Reel 30s</span></div></div><div class="idea-body"><div class="idea-desc">Honest myth-busting reel. Drives comments and shares because of the provocative title. People tag friends who are on the fence about trying pilates.</div><div class="idea-hook">"Someone asked this. We answered honestly. No sugarcoating."</div></div></div>
+    <div class="idea-card"><div class="idea-head" style="background:#EDE9DC"><div class="idea-series" style="color:#5C5840">Comparison Series</div><div class="idea-title" style="color:#3A2E18">Pilates vs Strength Training</div><div class="idea-tags"><span class="tag t-edu">Education</span><span class="fmt-tag f-car">Carousel</span></div></div><div class="idea-body"><div class="idea-desc">Honest side-by-side — not "pilates wins," but genuinely useful. Highly shareable because gym-goers tag their pilates-curious friends.</div><div class="idea-hook">"Hindi kailangan pumili. But if you're curious — swipe. 👉"</div></div></div>
+    <div class="idea-card"><div class="idea-head" style="background:#EDE9DC"><div class="idea-series" style="color:#5C5840">Comparison Series</div><div class="idea-title" style="color:#3A2E18">Yoga vs Pilates</div><div class="idea-tags"><span class="tag t-edu">Education</span><span class="fmt-tag f-car">Carousel</span></div></div><div class="idea-body"><div class="idea-desc">Reaches the yoga audience already on IG wellness feeds. Explains how pilates complements yoga — reaching a new audience segment beyond gym-goers.</div><div class="idea-hook">"If you love yoga, here's what pilates gives you that yoga can't."</div></div></div>
+    <div class="idea-card"><div class="idea-head" style="background:#4A6741"><div class="idea-series" style="color:#A8D890">Testimonial</div><div class="idea-title" style="color:#F2EAE0">Strength Training → Pilates: Body Change</div><div class="idea-tags"><span class="tag t-test">Testimonial</span><span class="fmt-tag f-car">Carousel</span></div></div><div class="idea-body"><div class="idea-desc">Real member journey. Before/after in how the body feels, moves, recovers — not appearance. Deeply relatable and shareable for the PH fitness audience.</div><div class="idea-hook">"She traded the barbell for the reformer. Here's what actually changed."</div></div></div>
+    <div class="idea-card"><div class="idea-head" style="background:#4A6741"><div class="idea-series" style="color:#A8D890">Testimonial</div><div class="idea-title" style="color:#F2EAE0">It took _ months to see real results</div><div class="idea-tags"><span class="tag t-test">Testimonial</span><span class="fmt-tag f-reel">Reel 1 min</span></div></div><div class="idea-body"><div class="idea-desc">Member fills in the blank. Text overlay reel with b-roll. One of the highest-converting formats for fitness studios — realistic timelines build trust.</div><div class="idea-hook">"She didn't believe it would work. Then ___ happened."</div></div></div>
+    <div class="idea-card"><div class="idea-head" style="background:#2A1808"><div class="idea-series" style="color:#C4903A">Recurring Series</div><div class="idea-title" style="color:#F2EAE0">Move with Folk Ambassadorship</div><div class="idea-tags"><span class="tag t-chal">Challenge</span><span class="fmt-tag f-reel">Reel 1 min</span></div></div><div class="idea-body"><div class="idea-desc">7-day challenge — members film one Folk-assigned move per day and tag @folkstudiopilates. UGC engine: each tag is free reach to new audiences. Ambassador badge for completers.</div><div class="idea-hook">"7 days. 7 moves. Tag us when you try it. 🌿 #MoveWithFolk"</div></div></div>
+    <div class="idea-card"><div class="idea-head" style="background:#8B3A1F"><div class="idea-series" style="color:#F2B090">Recurring Series</div><div class="idea-title" style="color:#F2EAE0">Folk Talks</div><div class="idea-tags"><span class="tag t-inst">Instructor</span><span class="fmt-tag f-reel">Reel 30s</span></div></div><div class="idea-body"><div class="idea-desc">Monthly series where instructors speak on pilates philosophy, wellness, and movement. Positions FolkStudio as a thought leader, not just a class provider. Builds deep follower trust.</div><div class="idea-hook">"This is what we believe about movement. Folk Talks Vol. 01."</div></div></div>
+    <div class="idea-card"><div class="idea-head" style="background:#F2EAE0"><div class="idea-series" style="color:#A63D22">Education</div><div class="idea-title" style="color:#8B3A1F">Pilates Essentials</div><div class="idea-tags"><span class="tag t-edu">Education</span><span class="fmt-tag f-static">Static + Text</span></div></div><div class="idea-body"><div class="idea-desc">First-class checklist — what to bring, wear, eat. Linen background, Cooper BT typeface, Pinyon Script accent. Extremely saveable format for new followers.</div><div class="idea-hook">"First class checklist. Save so you don't forget. ✓"</div></div></div>
+    <div class="idea-card"><div class="idea-head" style="background:#F2EAE0"><div class="idea-series" style="color:#A63D22">Education</div><div class="idea-title" style="color:#8B3A1F">Types of Pilates</div><div class="idea-tags"><span class="tag t-edu">Education</span><span class="fmt-tag f-car">Carousel</span></div></div><div class="idea-body"><div class="idea-desc">Mat vs Reformer vs Clinical vs Aerial — what each is, who it's for. Decision-helper content for people on the fence about which class to try first.</div><div class="idea-hook">"There's more than one kind. Here's how to know which is for you."</div></div></div>
+  </div>
+</div>
+
+<hr class="hr">
+
+<!-- ══ 05 SEO TIPS ══ -->
+<div class="sec">
+  <p class="eye">05 — Instagram SEO & Growth Tips</p>
+  <h2 class="stitle">Specific actions for <em>White Plains QC discoverability</em></h2>
+  <p class="sdesc">Applied directly to FolkStudio's account and location — not generic advice. These are the exact moves that improve reach in the QC/Manila Filipino wellness IG market.</p>
+  <div class="seo-grid">
+    <div class="seo-card"><div class="seo-head" style="background:#A63D22;color:#F2EAE0">Caption Keywords to Use Every Post</div><div class="seo-body"><div class="seo-item"><div class="seo-dot" style="background:#A63D22"></div>Always include "pilates White Plains," "pilates Quezon City," or "pilates Manila" somewhere in the caption — not just hashtags. IG's search engine indexes caption text.</div><div class="seo-item"><div class="seo-dot" style="background:#A63D22"></div>Use "reformer pilates Philippines," "beginner pilates QC," and "pilates studio White Plains" in at least 3 posts per week to build keyword authority.</div><div class="seo-item"><div class="seo-dot" style="background:#A63D22"></div>Name the studio in every caption: "at FolkStudio, White Plains, Quezon City" — not just @folkstudiopilates. The text name is indexed; the handle alone is not.</div></div></div>
+    <div class="seo-card"><div class="seo-head" style="background:#4A6741;color:#F2EAE0">Hashtag Strategy (Max 5, Targeted)</div><div class="seo-body"><div class="seo-item"><div class="seo-dot" style="background:#4A6741"></div>Use 3–5 hashtags only — not 30. Over-tagging signals spam in 2026. Choose: #pilatesPH #pilatesManila #reformerpilates #pilatesQC #folkstudio</div><div class="seo-item"><div class="seo-dot" style="background:#4A6741"></div>Mix: one large (#pilates), one medium (#reformerpilates), one local (#pilatesQC or #pilatesWhitePlains), one branded (#folkstudioph).</div><div class="seo-item"><div class="seo-dot" style="background:#4A6741"></div>Create branded hashtag for the challenge: #MoveWithFolk — every UGC post tagged extends reach to new audiences for free.</div></div></div>
+    <div class="seo-card"><div class="seo-head" style="background:#8B3A1F;color:#F2EAE0">Reel Hooks That Beat the Algorithm</div><div class="seo-body"><div class="seo-item"><div class="seo-dot" style="background:#8B3A1F"></div>First 1.5 seconds of every reel must have text on screen + audio. Start with the payoff, not the setup — IG decides reach in the first 3 seconds based on watch time.</div><div class="seo-item"><div class="seo-dot" style="background:#8B3A1F"></div>Use trending audio from the IG Reels audio tab — check every Monday. Adoption within 48 hours of a trend gets a distribution boost.</div><div class="seo-item"><div class="seo-dot" style="background:#8B3A1F"></div>End every reel with a CTA on screen: "Book your mat → link in bio" or "Save for your next class." Saves and shares are the signals the algorithm rewards most.</div></div></div>
+    <div class="seo-card"><div class="seo-head" style="background:#7A7455;color:#F2EAE0">Best Posting Times for PH Audience</div><div class="seo-body"><div class="seo-item"><div class="seo-dot" style="background:#7A7455"></div>Best windows for Metro Manila wellness audience: <strong>7:00–8:30 AM</strong> (morning scroll before work) and <strong>7:30–9:30 PM</strong> (after-dinner scroll). Confirm with FolkStudio's own analytics after 4 weeks.</div><div class="seo-item"><div class="seo-dot" style="background:#7A7455"></div>Engage with comments within the first 60 minutes of posting — replying in the first hour signals active engagement to the algorithm, boosting distribution.</div><div class="seo-item"><div class="seo-dot" style="background:#7A7455"></div>After posting, spend 10 minutes engaging with pilates/wellness/QC accounts. This "neighboring" signals account relevance to the algorithm and improves discovery.</div></div></div>
+  </div>
+</div>
+
+<hr class="hr">
+
+<!-- ══ 06 INTERACTIVE WEEKLY PLANNER ══ -->
+<div class="sec">
+  <p class="eye">06 — Interactive Weekly Planner</p>
+  <h2 class="stitle">Day-by-day <em>execution guide</em></h2>
+  <p class="sdesc">Click each day to see every scheduled post — content type, format, caption, CTA, hashtags, and design notes. A complete briefing tool for the design and content team.</p>
+  <div class="planner-section">
+    <div class="planner-header">
+      <div class="planner-header-top">Folk Studio · White Plains, Quezon City</div>
+      <div class="planner-header-title">Instagram Content Planner</div>
+      <div class="planner-header-sub">Weekly Strategy Guide · Tap a day to expand</div>
+    </div>
+    <div id="planner-root"></div>
+  </div>
+</div>
+
+<div class="doc-footer">
+  <span>FolkStudio · Instagram Content Strategy 2026</span>
+  <span>By SimpleeChanty</span>
+  <span>@folkstudiopilates · White Plains, Quezon City · For internal use</span>
+</div>
+
+</div><!-- end .main -->
+
+<script type="text/babel">
+const { useState } = React;
+
+const brand = {
+  cream:"#F5EFE7", sand:"#E0C9B2", brown:"#8B3A1F",
+  darkBrown:"#1E1208", rust:"#A63D22", taupe:"#8A7060",
+  white:"#FDFCFA", accent:"#5C3820", moss:"#4A6741", gold:"#C4903A"
+};
+
+const weeklyPlan = [
+  {
+    day:"Monday", short:"MON", theme:"Motivate & Educate",
+    posts:[
+      {
+        time:"7:00 AM", platform:"Feed", contentType:"education",
+        format:"Carousel", idea:"Pilates Dictionary — Vol. 1",
+        caption:'"Neutral spine, imprinting, powerhouse — speak Pilates fluently. Swipe to learn the top 10 terms every practitioner should know. 🎓"',
+        hashtags:"#PilatesDictionary #PilatesEducation #FolkStudio #LearnPilates #pilatesQC",
+        kpi:"Saves", cta:"Save this for your next class!",
+        designNotes:"Clean linen cards, one term per slide. Cooper BT Light for the term, Rugrats Sans for the definition. Folk Studio logo watermark bottom right. Terracotta accent on term text.",
+      },
+      {
+        time:"6:00 PM", platform:"Stories", contentType:"community",
+        format:"Story sequence (1 min)", idea:"Poll: How long have you been doing Pilates?",
+        caption:"Tap to vote! We love knowing our community 💛",
+        hashtags:"", kpi:"Engagement", cta:"Reply with your Pilates story",
+        designNotes:"3-slide story: (1) Poll slide with 4 options, (2) 'Share your journey' open question box, (3) DM CTA card with Folk Studio branding. Linen background, clay accents.",
+      },
+    ],
+  },
+  {
+    day:"Tuesday", short:"TUE", theme:"Behind the Studio",
+    posts:[
+      {
+        time:"8:00 AM", platform:"Reel", contentType:"behind the scenes",
+        format:"Reel/short video (7–15 secs)", idea:"Studio morning prep — before the first client walks in",
+        caption:'"Before the movement, there\'s the ritual. ✨ Every morning at Folk Studio, White Plains starts like this."',
+        hashtags:"#BehindTheScenes #FolkStudio #PilatesStudio #pilatesQC #PilatesLife",
+        kpi:"Reach", cta:"Tag someone who needs this kind of morning",
+        designNotes:"Aesthetic b-roll: reformers being set up, soft morning light, instructor prepping. Slow motion preferred. Minimal text overlay — studio name lower third. Trending ambient audio.",
+      },
+      {
+        time:"5:00 PM", platform:"Stories", contentType:"class promo",
+        format:"Story sequence (1 min)", idea:"This week's class schedule + 'Grab a slot' CTA",
+        caption:"Spots are limited — which class are you eyeing this week?",
+        hashtags:"", kpi:"Leads/bookings", cta:"Swipe up / Link in bio to book",
+        designNotes:"Schedule graphic (3 slides): Slide 1 overview, Slide 2 Open Mat Sundays highlight, Slide 3 booking CTA with urgency. Clay background, linen text. Include location: White Plains, QC.",
+      },
+    ],
+  },
+  {
+    day:"Wednesday", short:"WED", theme:"Wellness Wednesday",
+    posts:[
+      {
+        time:"7:30 AM", platform:"Feed", contentType:"education",
+        format:"Single image", idea:"Muscles Targeted by Pilates — body diagram infographic",
+        caption:'"It\'s not just core. Pilates works you from the inside out. 💪 Here\'s what actually activates during a session."',
+        hashtags:"#PilatesBody #MuscleMap #PilatesEducation #FolkStudio #pilatesWhitePlains",
+        kpi:"Saves", cta:"Save & share with a friend who thinks Pilates is 'easy'",
+        designNotes:"Illustrated body diagram, muscle groups labeled. Warm earthy tones consistent with brand palette. Clay (#A63D22) highlights for activated muscles. Folk Studio branding bottom.",
+      },
+      {
+        time:"12:00 PM", platform:"Stories", contentType:"testimonial",
+        format:"Story sequence (1 min)", idea:"Client story — 'It took me 3 months to see real results'",
+        caption:"Real results. Real people. 🤍",
+        hashtags:"", kpi:"Shares", cta:"DM us your story",
+        designNotes:"Quote card design. Client photo (with permission) as background, elegant serif type overlay. Before/after framed as feeling, not body change. Olive green (#7A7455) card variant.",
+      },
+    ],
+  },
+  {
+    day:"Thursday", short:"THU", theme:"Instructor Spotlight",
+    posts:[
+      {
+        time:"8:00 AM", platform:"Feed", contentType:"instructor spotlight",
+        format:"Carousel", idea:"Meet [Instructor Name] — their journey from student to teacher",
+        caption:'"Every instructor at Folk Studio has a story. This is [Name]\'s. 🌿"',
+        hashtags:"#InstructorSpotlight #FolkStudio #PilatesInstructor #CommunityFirst #pilatesQC",
+        kpi:"Engagement", cta:"Drop a 🤍 if you've taken their class",
+        designNotes:"Slide 1: portrait photo on moss green (#4A6741). Slides 2–4: Q&A cards — Why Pilates? Fav exercise? Advice for beginners? Consistent card template with Folk Studio branding.",
+      },
+      {
+        time:"7:00 PM", platform:"Stories", contentType:"challenge/series",
+        format:"Story sequence (1 min)", idea:"Day 1 of 5-Day Pilates Challenge — 'Feel It in 5'",
+        caption:"Are you in? Day 1 starts NOW. 🔥",
+        hashtags:"", kpi:"Reach", cta:"Share to your story to join",
+        designNotes:"Branded challenge card in dark olive (#5C5840). Movement demo clip or animated illustration. Countdown to next day. Bold type for challenge name. #FeelItIn5 hashtag prominent.",
+      },
+    ],
+  },
+  {
+    day:"Friday", short:"FRI", theme:"Folk Talks & Community",
+    posts:[
+      {
+        time:"8:00 AM", platform:"Reel", contentType:"education",
+        format:"Reel/short video (7–15 secs)", idea:"Pilates vs Strength Training — what nobody tells you #FolkTalks",
+        caption:'"We get asked this every week. Here\'s the honest answer. 🎙️ #FolkTalks"',
+        hashtags:"#PilatesVsGym #FolkTalks #PilatesEducation #FolkStudio #pilatesManila",
+        kpi:"Shares", cta:"Save & share to settle the debate",
+        designNotes:"Talking-head OR text-on-screen reel. Punchy split-screen comparison. Fast cuts, educational captions. Folk Talks branding card at opening — consistent every episode.",
+      },
+      {
+        time:"4:00 PM", platform:"Feed", contentType:"class promo",
+        format:"Static + text overlay", idea:"Weekend class availability — 'You deserve a Saturday reset'",
+        caption:'"Your body is asking for it. 🌅 Weekend slots open — link in bio."',
+        hashtags:"#WeekendPilates #FolkStudio #pilatesQC #SaturdayReset #BookNow",
+        kpi:"Leads/bookings", cta:"Book your weekend class",
+        designNotes:"Lifestyle photo from studio, warm afternoon light, clean minimal text overlay. Clay CTA button in the image. Location tag: White Plains, Quezon City.",
+      },
+    ],
+  },
+  {
+    day:"Saturday", short:"SAT", theme:"Movement & Community",
+    posts:[
+      {
+        time:"7:00 AM", platform:"Reel", contentType:"behind the scenes",
+        format:"Reel/short video (7–15 secs)", idea:"A Saturday morning class — movement, laughter, community",
+        caption:'"This is what we mean by movement for life. 🌿 See you on the reformer."',
+        hashtags:"#SaturdayPilates #FolkStudio #MovementForLife #PilatesCommunity #pilatesQC",
+        kpi:"Reach", cta:"Tag who you'd bring to a Saturday class",
+        designNotes:"Authentic, candid footage. No heavy editing. Real smiles, real sweat. Warm color grade. No stories today (IG Story reset day — let the reel breathe).",
+      },
+      {
+        time:"No Stories", platform:"—", contentType:"—",
+        format:"Rest from Stories", idea:"IG Story Reset Day — No Stories",
+        caption:"—",
+        hashtags:"", kpi:"—", cta:"—",
+        designNotes:"Strategic rest from Stories today. The Saturday feed post performs better when Stories aren't pulling attention. Resume Stories Sunday.",
+      },
+    ],
+  },
+  {
+    day:"Sunday", short:"SUN", theme:"Open Mat Sundays",
+    posts:[
+      {
+        time:"8:00 AM", platform:"Reel", contentType:"community",
+        format:"Reel/short video (1 min vlog)", idea:"Open Mat Sundays vlog — candid, warm, real Sunday energy",
+        caption:'"We saved you a mat next Sunday. 🌿 Open Mat every Sunday at FolkStudio, White Plains QC — ₱499, 10 slots."',
+        hashtags:"#OpenMatSundays #FolkStudio #pilatesQC #SundayPilates #MoveWithFolk",
+        kpi:"Follows · Shares", cta:"Reserve your mat → link in bio",
+        designNotes:"Vlog-style: people arriving, setting up mats, moving, laughing, leaving. Same music mood every week — creates series recognition. Ends with 'See you next Sunday.' text card.",
+      },
+      {
+        time:"10:00 AM", platform:"Stories", contentType:"community",
+        format:"Story sequence (1 min)", idea:"Day-of Open Mat — countdown, session moments, post-class CTA",
+        caption:"It's Sunday. You know what that means. 🌿",
+        hashtags:"", kpi:"Engagement · Bookings", cta:"'We have mats for next Sunday — book now'",
+        designNotes:"Real-time stories during the session: arriving members, mats laid out, quiet moments. Final story: booking CTA for next Sunday with urgency — 'Only X slots left.'",
+      },
+      {
+        time:"Evening", platform:"Feed", contentType:"community",
+        format:"Single image", idea:"Sunday quote card — 'A pause. A practice. A moment to reset.'",
+        caption:'"A pause. A practice. A moment to reset. 🌙 Rest is part of the work."',
+        hashtags:"#SundayReset #FolkStudio #PilatesMindset #WellnessJourney #pilatesWhitePlains",
+        kpi:"Saves", cta:"Save this reminder",
+        designNotes:"Soft contemplative image — reformer in golden hour light, or candle flat-lay. Minimal text. Linen background, deep clay Pinyon Script accent. Poetic, unhurried tone.",
+      },
+    ],
+  },
+];
+
+const ctColors = {
+  "class promo":         {bg:"#FBE8DF",border:"#A63D22",text:"#7A3D1E"},
+  "education":           {bg:"#EDE9DC",border:"#8B3A1F",text:"#4A2D17"},
+  "testimonial":         {bg:"#DDE9DA",border:"#4A6741",text:"#2E4A2B"},
+  "behind the scenes":   {bg:"#2A180822",border:"#C4903A",text:"#7A5820"},
+  "instructor spotlight":{bg:"#F0EBE4",border:"#8B3A1F",text:"#5C3820"},
+  "challenge/series":    {bg:"#1E120822",border:"#C4903A",text:"#8B5E3C"},
+  "community":           {bg:"#DDE9DA",border:"#4A6741",text:"#2E4A2B"},
+  "—":                   {bg:"#F0ECE4",border:"#C8B090",text:"#8A7060"},
+};
+
+const kpiColors = {
+  "Saves":"#8B3A1F","Reach":"#A63D22","Leads/bookings":"#1E1208",
+  "Engagement":"#4A6741","Shares":"#7A7455","Follows · Shares":"#4A6741",
+  "Engagement · Bookings":"#A63D22","—":"#C8B090"
+};
+
+const platIcons = {Feed:"◼",Reel:"▶",Stories:"◎","—":"—"};
+
+function Planner() {
+  const [sel, setSel] = useState(0);
+  const [exp, setExp] = useState(null);
+  const day = weeklyPlan[sel];
+
+  function selectDay(i){ setSel(i); setExp(null); }
+
+  return React.createElement("div",{style:{background:brand.darkBrown,fontFamily:"'Jost',sans-serif"}},
+
+    /* Day tabs */
+    React.createElement("div",{style:{display:"flex",overflowX:"auto",background:"#2A1808",borderBottom:`2px solid ${brand.rust}`}},
+      weeklyPlan.map((d,i)=>
+        React.createElement("button",{
+          key:i, onClick:()=>selectDay(i),
+          style:{
+            flex:"0 0 auto",padding:"14px 18px",
+            background:sel===i?brand.rust:"transparent",
+            color:sel===i?brand.cream:brand.sand,
+            border:"none",cursor:"pointer",
+            fontSize:11,fontWeight:sel===i?"600":"300",
+            letterSpacing:2,textTransform:"uppercase",
+            borderBottom:sel===i?`3px solid ${brand.gold}`:"3px solid transparent",
+            transition:"all 0.2s",fontFamily:"'Jost',sans-serif"
+          }
+        }, d.short)
+      )
+    ),
+
+    /* Day header */
+    React.createElement("div",{style:{padding:"20px 28px 12px",background:"#2A1808",borderBottom:`1px solid #3A2818`}},
+      React.createElement("div",{style:{fontSize:9,letterSpacing:3,color:brand.gold,textTransform:"uppercase",marginBottom:4}},`Day ${sel+1} of 7`),
+      React.createElement("div",{style:{fontFamily:"'Cormorant Garamond',serif",fontSize:24,color:brand.cream,fontWeight:400}},day.day),
+      React.createElement("div",{style:{fontSize:13,color:brand.sand,fontStyle:"italic",marginTop:2}},day.theme),
+      React.createElement("div",{style:{fontSize:11,color:brand.taupe,marginTop:6,fontFamily:"sans-serif"}},
+        `${day.posts.length} post${day.posts.length>1?"s":""} scheduled`
+      )
+    ),
+
+    /* Posts */
+    React.createElement("div",{style:{padding:"16px 20px 8px"}},
+      day.posts.map((post,pi)=>{
+        const ct = ctColors[post.contentType]||ctColors["—"];
+        const isExp = exp===pi;
+        return React.createElement("div",{
+          key:pi,
+          style:{background:"#2A1808",borderRadius:12,marginBottom:12,
+            border:`1px solid #3A2818`,overflow:"hidden",
+            boxShadow:isExp?`0 4px 20px rgba(0,0,0,0.4)`:"none",
+            transition:"box-shadow 0.2s"
+          }
+        },
+          /* Card head */
+          React.createElement("div",{
+            onClick:()=>setExp(isExp?null:pi),
+            style:{padding:"14px 18px",cursor:"pointer",display:"flex",alignItems:"flex-start",gap:12}
+          },
+            post.time!=="No Stories" && React.createElement("div",{
+              style:{background:brand.rust,color:brand.cream,borderRadius:6,padding:"4px 9px",
+                fontSize:10,fontFamily:"sans-serif",whiteSpace:"nowrap",flexShrink:0}
+            },post.time),
+            React.createElement("div",{style:{flex:1,minWidth:0}},
+              React.createElement("div",{style:{display:"flex",gap:6,flexWrap:"wrap",marginBottom:6}},
+                React.createElement("span",{style:{background:ct.bg,border:`1px solid ${ct.border}`,color:ct.text,
+                  borderRadius:12,padding:"2px 9px",fontSize:10,fontFamily:"sans-serif"}},post.contentType),
+                post.platform!=="—" && React.createElement("span",{style:{background:"rgba(242,234,224,.08)",color:brand.sand,
+                  borderRadius:12,padding:"2px 9px",fontSize:10,fontFamily:"sans-serif"}},
+                  `${platIcons[post.platform]||"○"} ${post.platform}`),
+                post.kpi!=="—" && React.createElement("span",{style:{
+                  background:`${(kpiColors[post.kpi]||"#8A7060")}22`,
+                  color:kpiColors[post.kpi]||brand.taupe,
+                  borderRadius:12,padding:"2px 9px",fontSize:10,fontFamily:"sans-serif",
+                  border:`1px solid ${(kpiColors[post.kpi]||"#8A7060")}55`
+                }},`KPI: ${post.kpi}`)
+              ),
+              React.createElement("div",{style:{fontSize:13,fontWeight:500,color:brand.cream,lineHeight:1.3}},post.idea),
+              React.createElement("div",{style:{fontSize:11,color:brand.taupe,fontFamily:"sans-serif",marginTop:3}},post.format)
+            ),
+            React.createElement("div",{style:{color:brand.taupe,fontSize:14,flexShrink:0}},isExp?"▲":"▼")
+          ),
+
+          /* Expanded */
+          isExp && React.createElement("div",{style:{borderTop:`1px solid #3A2818`,padding:"14px 18px",background:"#1E1208"}},
+            React.createElement("div",{style:{marginBottom:12}},
+              React.createElement("div",{style:{fontSize:9,letterSpacing:2,color:brand.gold,textTransform:"uppercase",fontFamily:"sans-serif",marginBottom:5}},"Caption"),
+              React.createElement("div",{style:{fontSize:12,color:brand.canvas,fontStyle:"italic",lineHeight:1.65,background:"#2A1808",borderRadius:8,padding:"10px 14px"}},post.caption)
+            ),
+            React.createElement("div",{style:{marginBottom:12}},
+              React.createElement("div",{style:{fontSize:9,letterSpacing:2,color:brand.gold,textTransform:"uppercase",fontFamily:"sans-serif",marginBottom:5}},"Call to Action"),
+              React.createElement("div",{style:{fontSize:12,color:brand.rust,fontFamily:"sans-serif",fontWeight:600}},`→ ${post.cta}`)
+            ),
+            post.hashtags && React.createElement("div",{style:{marginBottom:12}},
+              React.createElement("div",{style:{fontSize:9,letterSpacing:2,color:brand.gold,textTransform:"uppercase",fontFamily:"sans-serif",marginBottom:5}},"Hashtags"),
+              React.createElement("div",{style:{fontSize:11,color:brand.sand,fontFamily:"sans-serif",lineHeight:1.7}},post.hashtags)
+            ),
+            React.createElement("div",{style:{background:`rgba(166,61,34,.12)`,border:`1px dashed ${brand.rust}`,borderRadius:8,padding:"12px 14px"}},
+              React.createElement("div",{style:{fontSize:9,letterSpacing:2,color:brand.rust,textTransform:"uppercase",fontFamily:"sans-serif",marginBottom:5}},"🎨 Design Notes"),
+              React.createElement("div",{style:{fontSize:12,color:brand.canvas,fontFamily:"sans-serif",lineHeight:1.65}},post.designNotes)
+            )
+          )
+        );
+      })
+    ),
+
+    /* Week at a glance */
+    React.createElement("div",{style:{background:"#2A1808",padding:"16px 20px",borderTop:`1px solid #3A2818`}},
+      React.createElement("div",{style:{fontSize:9,letterSpacing:3,color:brand.gold,textTransform:"uppercase",fontFamily:"sans-serif",marginBottom:12}},"Full Week at a Glance"),
+      React.createElement("div",{style:{display:"grid",gridTemplateColumns:"repeat(7,1fr)",gap:6}},
+        weeklyPlan.map((d,i)=>
+          React.createElement("div",{
+            key:i, onClick:()=>selectDay(i),
+            style:{
+              background:sel===i?`${brand.rust}33`:`rgba(255,255,255,.04)`,
+              borderRadius:8,padding:"10px 8px",cursor:"pointer",textAlign:"center",
+              border:sel===i?`1px solid ${brand.rust}`:"1px solid transparent",
+              transition:"all 0.2s"
+            }
+          },
+            React.createElement("div",{style:{fontSize:9,color:brand.gold,fontFamily:"sans-serif",letterSpacing:1,fontWeight:600}},d.short),
+            React.createElement("div",{style:{fontFamily:"'Cormorant Garamond',serif",fontSize:11,color:brand.cream,marginTop:2,lineHeight:1.3}},d.theme),
+            React.createElement("div",{style:{fontSize:9,color:brand.taupe,fontFamily:"sans-serif",marginTop:4}},`${d.posts.length}p`)
+          )
+        )
+      )
+    ),
+
+    /* KPI Key */
+    React.createElement("div",{style:{background:"#1A1008",padding:"16px 20px 24px"}},
+      React.createElement("div",{style:{fontSize:9,letterSpacing:3,color:brand.gold,textTransform:"uppercase",fontFamily:"sans-serif",marginBottom:10}},"KPI Focus Key"),
+      React.createElement("div",{style:{display:"flex",flexWrap:"wrap",gap:12,marginBottom:14}},
+        Object.entries({"Saves":"#8B3A1F","Reach":"#A63D22","Leads/bookings":"#1E1208 border #C4903A","Engagement":"#4A6741","Shares":"#7A7455"}).map(([kpi,_])=>
+          React.createElement("div",{key:kpi,style:{display:"flex",alignItems:"center",gap:6}},
+            React.createElement("div",{style:{width:9,height:9,borderRadius:"50%",background:kpiColors[kpi]||"#8A7060"}}),
+            React.createElement("span",{style:{fontSize:11,fontFamily:"sans-serif",color:brand.sand}},kpi)
+          )
+        )
+      ),
+      React.createElement("div",{style:{fontSize:11,color:brand.taupe,fontFamily:"sans-serif",lineHeight:1.7,borderTop:`1px solid #3A2818`,paddingTop:12}},
+        "💡 ",
+        React.createElement("strong",{style:{color:brand.sand}},"Algorithm Tips: "),
+        "Post Reels consistently for Reach. Carousels maximize Saves & time-on-post. Stories keep daily engagement. Always include a strong CTA. Use 3–5 targeted hashtags max. Engage in comments within 60 minutes of posting."
+      )
+    )
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("planner-root")).render(React.createElement(Planner));
+</script>
+</body>
+</html>
